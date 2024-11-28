@@ -1,0 +1,25 @@
+avocado prices - dataset contained table with bags sizes (small, large, Xlarge) a total boxes. Nejprve se testovalo, jestli souhlasí součet v datasetu s opravdickým součtem:
+
+SELECT
+  Date,
+  Region,
+  Small_Bags,
+  Large_Bags,
+  XLarge_Bags,
+  Total_Bags, --vybírám jednotlivé sloupce z datasetu
+  Small_Bags + Large_Bags + XLarge_Bags AS Total_Bags_Calc -- provádím výpočet malý balíky+velký+xlarge a výsledek ukládám do novýho sloupce s názvem total bags cal
+FROM
+  sacred-machine-436606-p0.avocado_data.avocado_prices
+
+=========================
+
+SELECT
+  Date,
+  Region,
+  Total_Bags,
+  Small_Bags,
+  (Small_Bags / Total_Bags) * 100 AS Small_Bags_Percent -- počítám kolik % jsou small bags z celkového počtu a výsledek dávám do novýho sloupce, který se bude jmenovat small bags percent
+FROM
+  sacred-machine-436606-p0.avocado_data.avocado_prices
+WHERE
+  Total_Bags != 0 -- někde ve zdroji jsou ve sloupci total_bags i nulové hodnoty, proto musím přidat podmínku, že total bags se nesmí rovnat 0 - nulou se nedá dělit a nefungovalo by to. takhle se nulové total bags přeskočí
