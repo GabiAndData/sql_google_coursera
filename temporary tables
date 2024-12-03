@@ -1,0 +1,13 @@
+--vytvářím temp table s názvem trips_over_1_hour, kde vybírám všechno z tabulky, co splňuje podmínku délka jízdy je víc než 3600s => 1 hodina
+
+WITH trips_over_1_hour AS ( 
+  SELECT *
+  FROM "sacred-machine..."
+  WHERE tripduration >= 3600) 
+
+-- a tady pracuju už s tou tabulkou trips_over_1_hour => chci vědět kolik je těch jízd delších než hodina
+
+SELECT
+  COUNT(*) AS cnt
+FROM
+  trips_over_1_hour
