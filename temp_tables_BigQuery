@@ -1,0 +1,22 @@
+-- creating temporary table in BigQuery 
+
+WITH
+new_table_data AS (
+SELECT *
+FROM
+Existing_table
+WHERE
+Tripduration >=60
+)
+
+
+-- Temporary table creation in other databases (not supported in BigQuery)
+
+SELECT
+*
+INTO
+AfricaSales
+FROM
+GlobalSales
+WHERE
+Region = "Africa"
